@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Memories</title>
+    <style>
+        body {
+            background-color: cyan;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            position: relative;
+            width: 90vw;
+            height: 90vh;
+            display: none; /* Initially hidden */
+        }
+        .photo {
+            position: absolute;
+            width: 150px; 
+            height: 150px; 
+            object-fit: cover;
+            border: 5px solid white;
+            border-radius: 10px;
+            opacity: 0;
+        }
+        /* Slide animations */
+        .slide-in-left { animation: slideLeft 1s ease-in-out forwards; }
+        .slide-in-right { animation: slideRight 1s ease-in-out forwards; }
+        .slide-in-center { animation: slideCenter 1s ease-in-out forwards; }
+
+        @keyframes slideLeft {
+            from { transform: translateX(-100vw); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideRight {
+            from { transform: translateX(100vw); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideCenter {
+            from { transform: translateY(-100vh); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Photo positions */
+        #photo1 { top: 10%; left: 5%; transform: rotate(-20deg); }
+        #photo2 { top: 15%; right: 10%; transform: rotate(15deg); }
+        #photo3 { left: 10%; bottom: 15%; transform: rotate(-10deg); }
+        #photo4 { right: 5%; bottom: 10%; transform: rotate(20deg); }
+        #photo5 { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; }
+
+        /* Emoji Style */
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Hearts and Flowers positions */
+        #heart1 { top: 5%; left: 30%; }
+        #heart2 { top: 80%; right: 20%; }
+        #heart3 { bottom: 20%; left: 40%; }
+        #flower1 { top: 30%; right: 5%; }
+        #flower2 { bottom: 5%; left: 10%; }
+        #flower3 { top: 60%; right: 30%; }
+
+        /* Button Styling */
+        #showButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #showButton:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="showButton">Show Memories ❤️</button>
+
+    <div class="container" id="photoContainer">
+        <!-- Photos -->
+        <img id="photo1" class="photo" src="/aaryan.jpg" alt="Memory 1">
+        <img id="photo2" class="photo" src="/aman.png" alt="Memory 2">
+        <img id="photo3" class="photo" src="/rishu didi.png" alt="Memory 3">
+        <img id="photo4" class="photo" src="/Priti didi & Poonam didi.png" alt="Memory 4">
+        <img id="photo5" class="photo" src="/manish.jpg" alt="Memory 5">
+
+        <!-- Hearts and Flowers Emojis -->
+        <div id="heart1" class="emoji">❤️</div>
+        <div id="heart2" class="emoji">❤️</div>
+        <div id="heart3" class="emoji">❤️</div>
+        <div id="flower1" class="emoji">🌸</div>
+        <div id="flower2" class="emoji">🌸</div>
+        <div id="flower3" class="emoji">🌸</div>
+    </div>
+
+    <script>
+        document.getElementById("showButton").addEventListener("click", function() {
+            var container = document.getElementById("photoContainer");
+            container.style.display = "block"; // Show the container
+
+            // Delay for animations
+            setTimeout(() => {
+                document.getElementById("photo1").classList.add("slide-in-left");
+            }, 500);
+            setTimeout(() => {
+                document.getElementById("photo2").classList.add("slide-in-right");
+            }, 1000);
+            setTimeout(() => {
+                document.getElementById("photo3").classList.add("slide-in-left");
+            }, 1500);
+            setTimeout(() => {
+                document.getElementById("photo4").classList.add("slide-in-right");
+            }, 2000);
+            setTimeout(() => {
+                document.getElementById("photo5").classList.add("slide-in-center");
+            }, 2500);
+
+            // Show emojis after all photos
+            setTimeout(() => {
+                document.querySelectorAll(".emoji").forEach(el => {
+                    el.style.opacity = "1";
+                });
+            }, 3000);
+        });
+    </script>
+
+</body>
+</html>
