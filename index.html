@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message for Purvi</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #startButton {
+            background-color: #ffb6c1;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .stay {
+            animation: none;
+        }
+
+        #message {
+            display: none;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            position: absolute;
+            opacity: 0;
+            animation: shine 3s infinite alternate;
+        }
+
+        @keyframes shine {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="startButton" onclick="startEffect()">Click Here</button>
+    <div id="message">Purvi, a friend like you makes my life truly special! 💖</div>
+
+    <script>
+        const flowers = ["☘️", "🌼", "🌸", "🌹", "🌷", "🌺", "💮"];
+
+        function startEffect() {
+            document.body.style.backgroundColor = "#ffb6c1"; // Pink Background
+            document.getElementById('startButton').style.display = 'none';
+
+            for (let i = 0; i < 30; i++) {
+                let flower = document.createElement('div');
+                flower.classList.add('flower');
+                flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * window.innerWidth + 'px';
+                flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+                if (Math.random() > 0.5) {
+                    flower.classList.add('stay'); // Kuch flowers ruk jayenge
+                    flower.style.top = Math.random() * window.innerHeight + 'px';
+                } else {
+                    flower.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                }
+
+                document.body.appendChild(flower);
+            }
+
+            setTimeout(() => {
+                document.getElementById('message').style.display = 'block';
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
